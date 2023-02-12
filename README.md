@@ -10,7 +10,7 @@ The backend offers minimal api's for managing a libray.
 in the future I have to add a borrow time monitor and a sistem to manage the transactions, as late returns and terms extend request.
 
 ## Development server
-'npm install' is necessary in both folders api and library
+`npm install` is necessary in both folders api and library
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
 
