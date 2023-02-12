@@ -1,0 +1,41 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1>Add a review to book</h1>
+            <ng-container *ngIf="!isLoggedIn">
+                <div class="row">
+                    <div class="alert alert-danger h2">You need to be logged in to add a book!</div>
+                    <button class="btn btn-warning" routerLink="/login">Go to login</button>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="isLoggedIn">
+                <div class="card my-3 mb-3" *ngIf="book">
+                    <div class="card-body">
+                        <h5 class="card-title">{{book.title}}</h5>
+                        <p class="card-text">{{book.author}}</p>
+                        <p class="card-text">{{book.description}}</p>
+                    </div>
+                </div>
+                <form (submit)="onSubmit()">
+                    <div class="mb-3 form-group">
+                        <label for="rating" class="label-form">Rating</label>
+                        <select class="form-select" aria-label="select rating" [(ngModel)]="rating" name="rating">
+                            <option value="1">0</option>
+                            <option value="1">1</option>
+                            <option value="2">2</option>
+                            <option value="3">3</option>
+                            <option value="4">4</option>
+                            <option value="5">5</option>
+                        </select>
+                    </div>
+                    <div class="mb-3 form-group">
+                        <label for="review" class="form-label">Review</label>
+                        <textarea name="review" id="review" class="form-control" type="review"
+                            [(ngModel)]="review"></textarea>
+                    </div>
+                    <button class="btn btn-primary col-12" type="submit">Add review</button>
+                </form>
+            </ng-container>
+        </div>
+    </div>
+</div>

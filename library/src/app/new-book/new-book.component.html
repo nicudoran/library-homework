@@ -1,0 +1,31 @@
+<div class="container mt-5">
+    <div class="row">
+        <div class="col">
+            <h1>Add new book</h1>
+            <ng-container *ngIf="!isLoggedIn()">
+                <div class="row">
+                    <div class="alert alert-danger h2">You need to be logged in to add a book!</div>
+                    <button class="btn btn-warning" routerLink="/login">Go to login</button>
+                </div>
+            </ng-container>
+            <ng-container *ngIf="isLoggedIn()">
+                <form (submit)="onSubmit()">
+                    <div class="mb-3 form-group">
+                        <label for="title" class="label-form">Title</label>
+                        <input type="text" class="form-control" id="title" name="title" required [(ngModel)]="title">
+                    </div>
+                    <div class="mb-3 form-group">
+                        <label for="author" class="label-form">Author</label>
+                        <input type="text" class="form-control" id="author" name="author" required [(ngModel)]="author">
+                    </div>
+                    <div class="mb-3 form-group">
+                        <label for="content" class="form-label">Description</label>
+                        <textarea name="content" id="content" class="form-control" type="content" required
+                            [(ngModel)]="description"></textarea>
+                    </div>
+                    <button class="btn btn-primary col-12" type="submit">Add Book</button>
+                </form>
+            </ng-container>
+        </div>
+    </div>
+</div>

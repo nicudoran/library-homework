@@ -1,0 +1,37 @@
+<div class="container">
+    <div class="row">
+        <div class="col mt-3">
+            <h1>Register</h1>
+            <form [formGroup]="registerForm" (submit)="onSubmit()">
+                <div class="mb-3 form-group">
+                    <label for="username" class="form-label">Username</label>
+                    <input type="text" class="form-control" id="username" name="username" formControlName="username"
+                        [ngClass]="{'is-invalid':submitted && formValues['username'].errors}">
+                    <div *ngIf="submitted && formValues['username'].errors" class="invalid-feedback">
+                        <div *ngIf="formValues['username'].errors['required']">Username is required</div>
+                    </div>
+                </div>
+                <div class="mb-3 form-group">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" id="email" name="email" formControlName="email"
+                        [ngClass]="{'is-invalid':submitted && formValues['email'].errors}">
+                    <div *ngIf="submitted && formValues['email'].errors" class="invalid-feedback">
+                        <div *ngIf="formValues['email'].errors['required']">Email is required</div>
+                        <div *ngIf="formValues['email'].errors['email']">Email is not valid</div>
+                    </div>
+                </div>
+                <div class="mb-3 form-group">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password" formControlName="password"
+                        [ngClass]="{'is-invalid':submitted && formValues['password'].errors}">
+                    <div *ngIf="submitted && formValues['password'].errors" class="invalid-feedback">
+                        <div *ngIf="formValues['password'].errors['required']">Password is required</div>
+                        <div *ngIf="formValues['password'].errors['minlength']">Password must be at least 6 characters
+                        </div>
+                    </div>
+                </div>
+                <button class="btn btn-primary col-12" [disabled]="loading">Register</button>
+            </form>
+        </div>
+    </div>
+</div>
