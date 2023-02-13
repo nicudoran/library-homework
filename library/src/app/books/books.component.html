@@ -12,13 +12,14 @@
                 <button class="btn btn-primary" routerLink="/add-book">New book</button>
                 <div class="input-group mt-3">
                     <div class="form-outline">
-                        <label for="form1" class="form-label h4">Search</label>
-                        <input type="search" class="form-control" id="form1" [(ngModel)]="searchValue">
+                        <label for="form1" class="form-label h4">Search:</label>
+                        <input type="search" class="form-control" id="form1" ngModel #searchValue="ngModel">
+                        <!-- <div>{{searchValue.value}}</div> -->
                     </div>
                 </div>
                 <div *ngFor="let book of books">
                     <ng-container
-                        *ngIf="searchValue===''||book.title.toLowerCase().includes(searchValue)||book.description.toLowerCase().includes(searchValue)||book.author.toLowerCase().includes(searchValue)">
+                        *ngIf="searchValue.value===''||book.title.toLowerCase().includes(searchValue.value)||book.description.toLowerCase().includes(searchValue.value)||book.author.toLowerCase().includes(searchValue.value)">
                         <div class="card my-3">
                             <div class="card-body">
                                 <h5 class="card-title">{{book.title}}</h5>

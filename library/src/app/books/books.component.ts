@@ -14,15 +14,15 @@ export class BooksComponent implements OnInit {
   isLoggedIn:boolean = false;
   books:any;
   currentUser:any;
-  searchValue:string='';
   isAdmin:boolean = false;
   role:string = 'user';
   borrowedBooks:string[]=[];
-
-
-
+  
+  
+  
   @Input() book_id="";
 
+  
   
   constructor(
     private http:HttpClient,
@@ -52,7 +52,7 @@ export class BooksComponent implements OnInit {
             (data)=>{
               for (const book of data) {
                 this.getAverageRating(book._id).subscribe(rating => {
-                  book.averageRating=rating? rating : "N/A";
+                  book.averageRating=rating? rating : 0;
               })
               this.books=data;
             }

@@ -4,6 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const cors = require("cors");
 const { isAuthenticated, hasRole } = require("./middleware/auth");
+var mongoose = require("mongoose");
 
 require("./config/database").connect(); //conectare la baza de date mongodb
 
@@ -324,7 +325,6 @@ app.post("/review", isAuthenticated, async (req, res) => {
 app.get("/average/:id", isAuthenticated, async (req, res) => {
   try {
     const { id } = req.params;
-    const book = await Book.findOne({ _id: id });
 
     const ratings = await Book.aggregate([
       {
@@ -332,7 +332,7 @@ app.get("/average/:id", isAuthenticated, async (req, res) => {
       },
       {
         $match: {
-          title: book.title,
+          _id: mongoose.Types.ObjectId(id),
         },
       },
       {
@@ -349,7 +349,6 @@ app.get("/average/:id", isAuthenticated, async (req, res) => {
     if (!ratings) {
       return res.status(400).send("Book has no rating");
     }
-    console.log(ratings[0]);
     return res.status(200).send(ratings[0]);
   } catch (err) {
     console.log(err);
