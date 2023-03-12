@@ -17,13 +17,8 @@ export class BooksComponent implements OnInit {
   isAdmin:boolean = false;
   role:string = 'user';
   borrowedBooks:string[]=[];
-  
-  
-  
-  @Input() book_id="";
 
-  
-  
+
   constructor(
     private http:HttpClient,
     private authService:AuthService,
@@ -36,9 +31,9 @@ export class BooksComponent implements OnInit {
       this.isLoggedIn=this.authService.isLoggedIn();
       this.role=localStorage.getItem('role') as any;
       this.isAdmin=this.role==='admin'?true:false;
-      
+
       if(!(this.isLoggedIn)){
-        this.router.navigate(['/login']);  
+        this.router.navigate(['/login']);
       }
       else{
           const headers=new HttpHeaders({

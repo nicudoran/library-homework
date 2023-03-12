@@ -23,6 +23,11 @@
                         <textarea name="content" id="content" class="form-control" type="content" required
                             [(ngModel)]="description"></textarea>
                     </div>
+                    <div class="mb-3 form-group">
+                        <label for="img_link" class="form-label">Image link</label>
+                        <textarea name="img_link" id="img_link" class="form-control" type="img_link" required
+                            [(ngModel)]="img_link"></textarea>
+                    </div>
                     <button class="btn btn-primary col-12" type="submit">Add Book</button>
                 </form>
             </ng-container>

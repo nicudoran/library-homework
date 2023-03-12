@@ -1,0 +1,10 @@
+.img-custom{
+  max-height:300px;
+  float:right;
+}
+
+.img-wrapper{
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}

@@ -118,7 +118,7 @@ app.post("/login", async (req, res) => {
 //Endpoint pentru a adauga carti in biblioteca...disponibil doar pentru admini
 app.post("/add-book", isAuthenticated, hasRole("admin"), async (req, res) => {
   try {
-    const { title, author, description } = req.body;
+    const { title, author, description,img_link } = req.body;
     if (!(title && author)) {
       return res.status(400).send({ message: "Title and author are required" });
     }
@@ -134,6 +134,7 @@ app.post("/add-book", isAuthenticated, hasRole("admin"), async (req, res) => {
       author,
       userId: req.user.user_id,
       description: description,
+      img_link:img_link,
     });
     return res.status(200).json(newBook);
   } catch (err) {

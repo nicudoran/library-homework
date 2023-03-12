@@ -13,7 +13,8 @@ export class NewBookComponent {
   title:string='';
   author:string='';
   description:string='';
-  
+  img_link:string='';
+
   constructor(
     private authService:AuthService,
     private router:Router,
@@ -28,7 +29,7 @@ export class NewBookComponent {
       "Content-Type":"application/json",
     "x-access-token":localStorage.getItem("token") as any,
     })
-    this.bookService.addBook(this.title, this.author, this.description, headers).subscribe({
+    this.bookService.addBook(this.title, this.author, this.description,this.img_link, headers).subscribe({
       next:(res)=>{
         this.router.navigate(['/books']);
       },error:(err)=>{

@@ -14,6 +14,7 @@ const bookSchema = new mongoose.Schema({
   status: { type: String, default: "available" },
   reviews: [{ type: Review, default: [] }],
   borrowed_by: { type: String },
+  img_link:{type:String},
 });
 
 module.exports = mongoose.model("Book", bookSchema);
