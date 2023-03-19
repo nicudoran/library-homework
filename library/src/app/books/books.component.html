@@ -8,6 +8,7 @@
                     <button class="btn btn-warning" routerLink="/login">Go to login</button>
                 </div>
             </ng-container>
+            <p *ngIf="isLoggedIn">Wellcome {{username}}</p>
             <ng-container *ngIf="isLoggedIn&&books">
                 <button class="btn btn-primary" routerLink="/add-book">New book</button>
                 <div class="input-group mt-3">
@@ -17,21 +18,20 @@
                         <!-- <div>{{searchValue.value}}</div> -->
                     </div>
                 </div>
-                <div *ngFor="let book of books">
+                <div *ngFor="let book of books;">
                     <ng-container
                         *ngIf="searchValue.value===''||book.title.toLowerCase().includes(searchValue.value)||book.description.toLowerCase().includes(searchValue.value)||book.author.toLowerCase().includes(searchValue.value)">
                         <div class="card my-3 custom-card">
                           <div class="row g-0">
-                            <div class="col-md-8 col-sm-12">
+                            <div class="col-md-9 col-sm-12">
                             <div class="card-body">
                                 <h5 class="card-title">{{book.title}}</h5>
                                 <p class="card-text">Author: {{book.author}}</p>
                                 <p class="card-text">Description: {{book.description}}</p>
                                 <p class="card-text">Rating:
-                                    {{book.averageRating|number:'1.0-2'}}/5 ({{book.reviews.length}} reviews)</p>
+                                    {{book.averageRating|number:'1.0-2'}}/5 (<a routerLink="reviews/{{book._id}}">{{book.reviews.length}} reviews</a>)</p>
                                 <p class="card-text">Status: {{book.status}}</p>
-                                <button class="btn btn-success mx-3 mt-2 mt-sm-0" (click)="borrowBook(book._id)"
-                                    *ngIf="book.status==='available'">BORROW</button>
+                                <button class="btn btn-success mx-3 mt-2 mt-sm-0" (click)="borrowBook(book._id)" *ngIf="book.status==='available'">BORROW</button>
                                 <button class="btn btn-warning mx-3 mt-2 mt-sm-0" (click)="returnBook(book._id)"
                                     *ngIf="borrowedBooks.includes(book._id)">RETURN</button>
                                 <button class="btn btn-secondary mx-3 mt-2 mt-sm-0" (click)="reviewBook(book._id)">Add
@@ -40,8 +40,8 @@
                                     (click)="deleteBook(book._id)">DELETE</button>
                                     </div>
                                   </div>
-                                    <div class="col-4 img-wrapper">
-                                      <img src="{{book.img_link}}" class="img-fluid rounded-start img-custom d-none d-md-block" alt="{{book.title}} - image">
+                                    <div class="col-3 img-wrapper">
+                                      <img src="{{book.img_link}}" class="img-fluid rounded img-custom d-none d-md-block" alt="{{book.title}} - image">
                                     </div>
                           </div>
                         </div>

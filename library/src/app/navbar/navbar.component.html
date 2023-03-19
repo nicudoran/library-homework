@@ -1,5 +1,9 @@
-<div class="container-fluid  fixed-top">
+<div class="fixed-top">
     <ul class="nav justify-content-center bg-light border-bottom">
+        <li class="nav-item">
+            <a class="nav-link" aria-current="page" routerLink="/" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">Home</a>
+        </li>
         <li class="nav-item">
             <a class="nav-link" aria-current="page" routerLink="/register" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }">Register</a>
@@ -11,6 +15,10 @@
         <li class="nav-item">
             <a class="nav-link" routerLink="/add-book" routerLinkActive="active"
                 [routerLinkActiveOptions]="{ exact: true }">Add books</a>
+        </li>
+        <li class="nav-item">
+            <a *ngIf="isLoggedIn()&&isAdmin()" class="nav-link" routerLink="/admin" routerLinkActive="active"
+                [routerLinkActiveOptions]="{ exact: true }">Admin</a>
         </li>
         <li class="nav-item">
             <a class="nav-link" routerLink="books" routerLinkActive="active"

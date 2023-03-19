@@ -21,6 +21,7 @@ app.use(express.json({ limit: "50mb" }));
 const TOKEN_KEY = process.env.TOKEN_KEY;
 const admins = process.env.admins;
 
+
 // aici construim endpoint-urile
 app.post("/register", async (req, res) => {
   //incercam sa aducem date din frontend - in caz de esec trimitem raspuns corespunzator
@@ -66,7 +67,7 @@ app.post("/register", async (req, res) => {
     const token = jwt.sign(
       { user_id: newUser._id, username, role },
       TOKEN_KEY,
-      { expiresIn: "3h" }
+      { expiresIn: "1h" }
     );
     // atribuim token-ul semnat user-ului inregistrat si returnam un raspuns de succes - cod 201 -created
     newUser.token = token;
@@ -76,6 +77,8 @@ app.post("/register", async (req, res) => {
     console.log("Error on register: ", err);
   }
 });
+
+
 
 app.post("/login", async (req, res) => {
   //incercam sa aducem datele din frontend - intodeauna folosim un block try-catch pentru a gestiona eventuale erori
@@ -104,7 +107,7 @@ app.post("/login", async (req, res) => {
           borrowedBooks: existingUser.borrowedBooks,
         },
         TOKEN_KEY,
-        { expiresIn: "3h" }
+        { expiresIn: "1h" }
       );
       existingUser.token = token;
       return res.status(200).json(existingUser);
@@ -261,7 +264,7 @@ app.post("/return", isAuthenticated, async (req, res) => {
       }
       return res.status(200).json(updatedBook);
     }
-    return res.status(409).send({ message: "You did not borrowed this book!" });
+    return res.status(409).send({ message: "You did not borrow this book!" });
   } catch (err) {
     console.log(err);
     return res.status(400).send({ message: "Error on request" });
@@ -323,7 +326,7 @@ app.post("/review", isAuthenticated, async (req, res) => {
   }
 });
 
-app.get("/average/:id", isAuthenticated, async (req, res) => {
+app.get("/average/:id", async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -348,12 +351,12 @@ app.get("/average/:id", isAuthenticated, async (req, res) => {
       },
     ]);
     if (!ratings) {
-      return res.status(400).send("Book has no rating");
+      return res.status(400).json({message:"Book has no rating"});
     }
     return res.status(200).send(ratings[0]);
   } catch (err) {
     console.log(err);
-    return res.status(400).json({ message: "Error on request" });
+    return res.status(400).send(err.message);
   }
 });
 

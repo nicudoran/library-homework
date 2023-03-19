@@ -10,10 +10,10 @@ const isAuthenticated = (req, res, next) => {
   }
   try {
     const decoded = jwt.verify(token, TOKEN_KEY);
-    req.user = decoded;
+      req.user = decoded;
+  
   } catch (err) {
-    console.log("Error on authentication: ", err);
-    return res.status(401).json({ message: "Token is invalid" });
+    return res.status(401).send({ message:"Invalid token"});
   }
   return next();
 };

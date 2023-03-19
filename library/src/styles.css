@@ -3,3 +3,10 @@ body::before{
     content:"";
     height:50px;
 }
+
+@media (max-width:551px){
+  body::before{
+    height:100px;
+}
+}
+

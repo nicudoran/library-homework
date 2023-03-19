@@ -14,6 +14,10 @@ import { NavbarComponent } from './navbar/navbar.component';
 import { BooksComponent } from './books/books.component';
 import { NewBookComponent } from './new-book/new-book.component';
 import { ReviewComponent } from './review/review.component';
+import { AdminComponent } from './admin/admin.component';
+import { HomeComponent } from './home/home.component';
+import { NoAccessComponent } from './no-access/no-access.component';
+import { ReviewsPageComponent } from './reviews-page/reviews-page.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +28,11 @@ import { ReviewComponent } from './review/review.component';
     NavbarComponent,
     BooksComponent,
     NewBookComponent,
-    ReviewComponent
+    ReviewComponent,
+    AdminComponent,
+    HomeComponent,
+    NoAccessComponent,
+    ReviewsPageComponent
   ],
   imports: [
     BrowserModule,

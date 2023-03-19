@@ -1,0 +1,44 @@
+<div class="container mt-5">
+  <div class="row">
+      <div class="col">
+          <h1>Book:</h1>
+          <ng-container *ngIf="!isLoggedIn">
+              <div class="row">
+                  <div class="alert alert-danger h2">You need to be logged in to see reviews!</div>
+                  <button class="btn btn-warning" routerLink="/login">Go to login</button>
+              </div>
+          </ng-container>
+          <ng-container *ngIf="isLoggedIn">
+            <div class="card my-3 mb-3" *ngIf="book">
+                    <div class="my-3 custom-card">
+                      <div class="row g-0">
+                        <div class="col-md-9 col-sm-12">
+                        <div class="card-body">
+                            <h5 class="card-title">{{book.title}}</h5>
+                            <p class="card-text">Author: {{book.author}}</p>
+                            <p class="card-text">Description: {{book.description}}</p>
+                            <p class="card-text">Rating:
+                                {{book.average_rating|number:'1.0-2'}}/5</p>
+                                  </div>
+                              </div>
+                                <div class="col-3 img-wrapper">
+                                  <img src="{{book.img_link}}" class="img-fluid rounded img-custom d-none d-md-block" alt="{{book.title}} - image">
+                                </div>
+                      </div>
+                    </div>
+              </div>
+              <div *ngIf="book">
+                <div class="h5">Reviews:</div>
+              <div class="card my-3 mb-3" *ngFor="let review of book.reviews;index as i">
+                <div class="card-body">
+                  <div class="card-text m-2">Rating: {{review.rating}}/5</div>
+                  <div class="card-text m-2">Review: {{review.review}}</div>
+                  <div class="card-text m-2">Author: {{review.username}}</div>
+                </div>
+              </div>
+              </div>
+              <button class="btn btn-warning mb-3" routerLink="/books">Go to books</button>
+          </ng-container>
+      </div>
+  </div>
+</div>
